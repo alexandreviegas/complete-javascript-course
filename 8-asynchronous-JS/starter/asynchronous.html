@@ -71,45 +71,55 @@
         //     });
 
         //Lecture: async/await
-        const getIds = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve([123, 456, 789, 147, 258, 369]);
-            }, 1500);
-        });
+        // const getIds = new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //         resolve([123, 456, 789, 147, 258, 369]);
+        //     }, 1500);
+        // });
 
-        const getRecipe = id => {
-            return new Promise((resolve, reject) => {
-                setTimeout(id => {
-                    resolve({id: id, title: 'French Fries', publisher: 'John'});
-                }, 1500, id);
-            }
-        )};
+        // const getRecipe = id => {
+        //     return new Promise((resolve, reject) => {
+        //         setTimeout(id => {
+        //             resolve({id: id, title: 'French Fries', publisher: 'John'});
+        //         }, 1500, id);
+        //     }
+        // )};
 
-        const getRelated = publisher => {
-            return new Promise((resolve, reject) => {
-                setTimeout(publisher => {
-                    resolve({title: 'Brazilian Fries', publisher: 'John'});
-                }, 1500, publisher);
-            }
-        )};
+        // const getRelated = publisher => {
+        //     return new Promise((resolve, reject) => {
+        //         setTimeout(publisher => {
+        //             resolve({title: 'Brazilian Fries', publisher: 'John'});
+        //         }, 1500, publisher);
+        //     }
+        // )};
 
-        async function getRecipesAW() {
-            const ids = await getIds;
-            console.log(ids);
+        // async function getRecipesAW() {
+        //     const ids = await getIds;
+        //     console.log(ids);
 
-            const recipe = await getRecipe(ids[2]);
-            console.log(`${recipe.id}: ${recipe.title}`);
+        //     const recipe = await getRecipe(ids[2]);
+        //     console.log(`${recipe.id}: ${recipe.title}`);
 
-            const related = await getRecipe(recipe.publisher);
-            console.log(`${related.publisher}: ${related.title}`);
+        //     const related = await getRecipe(recipe.publisher);
+        //     console.log(`${related.publisher}: ${related.title}`);
 
-            return recipe;
-        }
+        //     return recipe;
+        // }
 
-        getRecipesAW()
-            .then(recipe => console.log(recipe));
+        // getRecipesAW()
+        //     .then(recipe => console.log(recipe));
         
+        const api = fetch('https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/455819/');
 
+        api.then(result => {
+            return result.json();
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
 
     </script>
 </body>
